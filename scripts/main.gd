@@ -9,8 +9,6 @@ const PATH_NAMES = ["P5","P4","P3","P2","P1"]
 const PATH_START_X = 300
 const PATH_SPACING = 420
 const TEST_ZONE := "P1"
-const DESIGN_WIDTH := 2304.0
-const DESIGN_HEIGHT := 1356.0
 
 var cards: Dictionary = {}
 var zones: Dictionary = {}
@@ -27,15 +25,14 @@ func _ready() -> void:
 	for i in PATH_NAMES.size():
 		var x = PATH_START_X + ( i * PATH_SPACING)
 		make_zone(PATH_NAMES[i], PATH_TILE_TEX, Vector2(x, 500))
-	print("P1 Position ",zones["P1"].position)
-	print("Viewport Size ",get_viewport_rect().size)
 	get_viewport().size_changed.connect(_on_viewport_resized)
 	_on_viewport_resized()
-
+	p1_board.position = -GameBoard.CENTER
+	
 func _on_viewport_resized() -> void:
 	var size := get_viewport_rect().size
-	var sx := size.x / DESIGN_WIDTH
-	var sy := size.y / DESIGN_HEIGHT
+	var sx := size.x / GameBoard.DESIGN_SIZE.x
+	var sy := size.y / GameBoard.DESIGN_SIZE.y
 	var s := minf(sx, sy)
 	game_board.scale = Vector2(s, s)
 	game_board.position = size * .5

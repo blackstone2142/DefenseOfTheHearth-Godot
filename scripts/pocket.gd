@@ -25,3 +25,12 @@ func accepts_type(card_type: String) -> bool:
 	if allowed_types.is_empty():
 		return true
 	return card_type in allowed_types
+
+func can_add(card_type: String) -> bool:
+	return not is_full() and accepts_type(card_type)
+
+func add_card(card_id: String, card_type: String) -> bool:
+	if not can_add(card_type):
+		return false
+	cards.append(card_id)
+	return true
