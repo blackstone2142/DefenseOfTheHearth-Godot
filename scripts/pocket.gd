@@ -34,3 +34,9 @@ func add_card(card_id: String, card_type: String) -> bool:
 		return false
 	cards.append(card_id)
 	return true
+
+func remove_card(card_id: String) -> bool:
+	if not cards.has(card_id):
+		return false
+	cards.erase(card_id)
+	return true
