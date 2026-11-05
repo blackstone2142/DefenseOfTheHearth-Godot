@@ -40,3 +40,11 @@ func remove_card(card_id: String) -> bool:
 		return false
 	cards.erase(card_id)
 	return true
+
+func shuffle() -> void:
+	cards.shuffle()
+
+func draw_top() -> String:
+	if cards.is_empty():
+		return ""
+	return cards.pop_front()
