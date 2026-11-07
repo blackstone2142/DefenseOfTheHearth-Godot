@@ -8,11 +8,13 @@ var cards: Array = []
 var cap: int
 var allowed_types: Array = []
 var blocked_types: Array = []
+var allowed_supertypes: Array = []
 
-func setup(new_cap: int, new_types: Array = [], new_blocked: Array = []) -> void:
+func setup(new_cap: int, new_types: Array = [], new_blocked: Array = [], new_supertypes: Array = []) -> void:
 	cap = new_cap
 	allowed_types = new_types
 	blocked_types = new_blocked
+	allowed_supertypes = new_supertypes
 
 func is_full() -> bool:
 	if cap == UNCAPPED:
@@ -25,6 +27,13 @@ func accepts_type(card_type: String) -> bool:
 	if allowed_types.is_empty():
 		return true
 	return card_type in allowed_types
+
+func accepts_card(card: Dictionary) -> bool:
+	if card["type"] in blocked_types:
+		return false
+	if allowed_types.is_empty():
+		return true
+	return card["type"] in allowed_types
 
 func can_add(card_type: String) -> bool:
 	return not is_full() and accepts_type(card_type)
