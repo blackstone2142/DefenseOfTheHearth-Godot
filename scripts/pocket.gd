@@ -31,9 +31,9 @@ func accepts_type(card_type: String) -> bool:
 func accepts_card(card: Dictionary) -> bool:
 	if card["type"] in blocked_types:
 		return false
-	if allowed_types.is_empty():
-		return true
-	return card["type"] in allowed_types
+	if allowed_types.is_empty() and not card["type"] in allowed_types:
+		return false
+	return true
 
 func can_add(card_type: String) -> bool:
 	return not is_full() and accepts_type(card_type)
