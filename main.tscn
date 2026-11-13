@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://doxa5ouxuufgq"]
 
 [ext_resource type="Script" uid="uid://jnjfkuewk3iw" path="res://scripts/main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://pj15ijimca6w" path="res://scripts/game_board.gd" id="2_0xm2m"]
 
 [node name="Main" type="Node2D" unique_id=821961676]
 script = ExtResource("1_0xm2m")
+
+[node name="GameBoard" type="Node2D" parent="." unique_id=586418428]
+script = ExtResource("2_0xm2m")
+
+[node name="Player1Board" type="Node2D" parent="GameBoard" unique_id=556953260]
+
+[node name="Player2Board" type="Node2D" parent="GameBoard" unique_id=1392636460]
