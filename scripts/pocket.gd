@@ -21,27 +21,22 @@ func is_full() -> bool:
 		return false
 	return cards.size() >= cap
 
-func accepts_type(card_type: String) -> bool:
-	if card_type in blocked_types:
-		return false
-	if allowed_types.is_empty():
-		return true
-	return card_type in allowed_types
-
 func accepts_card(card: Dictionary) -> bool:
 	if card["type"] in blocked_types:
 		return false
-	if allowed_types.is_empty() and not card["type"] in allowed_types:
+	if not allowed_types.is_empty() and not card["type"] in allowed_types:
+		return false
+	if not allowed_supertypes.is_empty() and not card["superType"] in allowed_supertypes:
 		return false
 	return true
 
-func can_add(card_type: String) -> bool:
-	return not is_full() and accepts_type(card_type)
+func can_add(card: Dictionary) -> bool:
+	return not is_full() and accepts_card(card)
 
-func add_card(card_id: String, card_type: String) -> bool:
-	if not can_add(card_type):
+func add_card(card: Dictionary) -> bool:
+	if not can_add(card):
 		return false
-	cards.append(card_id)
+	cards.append(card["id"])
 	return true
 
 func remove_card(card_id: String) -> bool:
