@@ -28,7 +28,9 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_on_viewport_resized)
 	_on_viewport_resized()
 	p1_board.position = -GameBoard.CENTER
-	
+
+
+
 func _on_viewport_resized() -> void:
 	var size := get_viewport_rect().size
 	var sx := size.x / GameBoard.DESIGN_SIZE.x
